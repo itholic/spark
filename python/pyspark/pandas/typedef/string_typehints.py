@@ -23,12 +23,12 @@ from inspect import getfullargspec  # noqa: F401
 
 
 def resolve_string_type_hint(tpe):
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
     from pyspark.pandas import DataFrame, Series
 
     locs = {
-        "ks": ks,
-        "koalas": ks,
+        "pp": pp,
+        "koalas": pp,
         "DataFrame": DataFrame,
         "Series": Series,
     }

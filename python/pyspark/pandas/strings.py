@@ -29,7 +29,7 @@ from pyspark.sql.functions import pandas_udf, PandasUDFType
 from pyspark.pandas.spark import functions as SF
 
 if TYPE_CHECKING:
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
 
 class StringMethods(object):

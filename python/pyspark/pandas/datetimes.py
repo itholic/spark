@@ -26,7 +26,7 @@ import pyspark.sql.functions as F
 from pyspark.sql.types import DateType, TimestampType, LongType
 
 if TYPE_CHECKING:
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
 
 class DatetimeMethods(object):

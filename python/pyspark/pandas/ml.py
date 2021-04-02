@@ -27,7 +27,7 @@ from pyspark.ml.stat import Correlation
 from pyspark.pandas.utils import column_labels_level
 
 if TYPE_CHECKING:
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
 
 CORRELATION_OUTPUT_COLUMN = "__correlation_output__"

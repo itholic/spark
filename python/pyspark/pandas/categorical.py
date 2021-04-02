@@ -20,7 +20,7 @@ import pandas as pd
 from pandas.api.types import CategoricalDtype
 
 if TYPE_CHECKING:
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
 
 class CategoricalAccessor(object):

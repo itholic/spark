@@ -29,7 +29,7 @@ from pyspark.sql import Column, DataFrame as SparkDataFrame
 from pyspark.sql.types import DataType, StructType
 
 if TYPE_CHECKING:
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
     from pyspark.pandas.base import IndexOpsMixin
     from pyspark.pandas.frame import CachedDataFrame
 
@@ -1201,7 +1201,7 @@ class CachedSparkFrameMethods(SparkFrameMethods):
 
         Examples
         --------
-        >>> import pyspark.pandas as ks
+        >>> import pyspark.pandas as pp
         >>> import pyspark
         >>> df = pp.DataFrame([(.2, .3), (.0, .6), (.6, .0), (.2, .1)],
         ...                   columns=['dogs', 'cats'])

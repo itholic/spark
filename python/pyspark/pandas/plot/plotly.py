@@ -27,7 +27,7 @@ from pyspark.pandas.plot import (
 )
 
 if TYPE_CHECKING:
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
 
 def plot_koalas(data: Union["pp.DataFrame", "pp.Series"], kind: str, **kwargs):
@@ -111,7 +111,7 @@ def plot_histogram(data: Union["pp.DataFrame", "pp.Series"], **kwargs):
 
 def plot_box(data: Union["pp.DataFrame", "pp.Series"], **kwargs):
     import plotly.graph_objs as go
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
     if isinstance(data, pp.DataFrame):
         raise RuntimeError(
@@ -179,7 +179,7 @@ def plot_box(data: Union["pp.DataFrame", "pp.Series"], **kwargs):
 
 def plot_kde(data: Union["pp.DataFrame", "pp.Series"], **kwargs):
     from plotly import express
-    import pyspark.pandas as ks
+    import pyspark.pandas as pp
 
     if isinstance(data, pp.DataFrame) and "color" not in kwargs:
         kwargs["color"] = "names"
