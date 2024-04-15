@@ -17,8 +17,6 @@
 
 package org.apache.spark.sql.catalyst.trees
 
-import scala.collection.mutable
-
 import org.apache.spark.{QueryContext, QueryContextType, SparkUnsupportedOperationException}
 
 /** The class represents error context of a SQL query. */
@@ -136,7 +134,9 @@ case class SQLQueryContext(
   override def callSite: String = throw SparkUnsupportedOperationException()
 }
 
-case class DataFrameQueryContext(stackTrace: Seq[StackTraceElement]) extends QueryContext {
+case class DataFrameQueryContext(
+      stackTrace: Seq[StackTraceElement], pysparkErrorContext: Option[(String, String)]
+    ) extends QueryContext {
   override val contextType = QueryContextType.DataFrame
 
   override def objectType: String = throw SparkUnsupportedOperationException()
@@ -157,13 +157,10 @@ case class DataFrameQueryContext(stackTrace: Seq[StackTraceElement]) extends Que
 
   override val callSite: String = stackTrace.tail.mkString("\n")
 
-  val pysparkOriginInfo: Option[mutable.Map[String, String]] = PySparkCurrentOrigin.pop()
+  val pysparkFragment: String = pysparkErrorContext.map(_._1).getOrElse("")
+  val pysparkCallSite: String = pysparkErrorContext.map(_._2).getOrElse("")
 
-  val pysparkFragment: String = pysparkOriginInfo.map(_.getOrElse("fragment", "")).getOrElse("")
-
-  val pysparkCallSite: String = pysparkOriginInfo.map(_.getOrElse("callSite", "")).getOrElse("")
-
-  val (displayedFragment, displayedCallsite) = if (pysparkOriginInfo.nonEmpty) {
+  val (displayedFragment, displayedCallsite) = if (pysparkErrorContext.nonEmpty) {
     (pysparkFragment, pysparkCallSite)
   } else {
     (fragment, callSite)

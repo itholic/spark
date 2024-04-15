@@ -194,6 +194,7 @@ def _reverse_op(
         return Column(jc)
 
     _.__doc__ = doc
+    _.__name__ = name
     return _
 
 

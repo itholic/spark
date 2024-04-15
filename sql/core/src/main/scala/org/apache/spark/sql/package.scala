@@ -106,7 +106,8 @@ package object sql {
       while (i < st.length && sparkCode(st(i))) i += 1
       val origin = Origin(stackTrace = Some(st.slice(
         from = i - 1,
-        until = i + SQLConf.get.stackTracesInDataFrameContext)))
+        until = i + SQLConf.get.stackTracesInDataFrameContext)),
+        pysparkErrorContext = CurrentOrigin.get.pysparkErrorContext)
       CurrentOrigin.withOrigin(origin)(f)
     }
   }
